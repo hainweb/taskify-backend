@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerUser, loginUser } = require("../controllers/authController.js");
+const { registerUser, loginUser, updateProfile } = require("../controllers/authController.js");
 const protect = require("../middleware/authMiddleware.js");
 
 const router = express.Router();
@@ -10,5 +10,7 @@ router.post("/login", loginUser);
 router.get("/profile", protect, (req, res) => {
   res.json(req.user);
 });
+
+router.put("/profile", protect, updateProfile);
 
 export default router;
