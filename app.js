@@ -8,6 +8,7 @@ var indexRouter = require("./routes/index");
 const { connectDB } = require("./config/db");
 const { authRoutes } = require("./routes/authRoutes");
 const { default: taskRoutes } = require("./routes/taskRoutes");
+const { default: projectRoutes } = require("./routes/projectRoutes");
 
 var app = express();
 
@@ -25,6 +26,8 @@ connectDB();
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/projects", projectRoutes);
+
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
