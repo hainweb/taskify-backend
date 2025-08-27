@@ -10,6 +10,5 @@ router.get("/profile", protect, (req, res) => {
   res.json(req.user);
 });
 
-router.put("/profile", protect, updateProfile);
 
 export default router;
