@@ -1,20 +1,23 @@
-import express from "express";
-import {
+const express = require("express");
+
+const {
   createProject,
   getProjects,
   updateProject,
   deleteProject,
-} from "../controllers/projectController.js";
-import protect from "../middleware/authMiddleware.js";
+} = require("../controllers/projectController.js");
+
+const protect = require("../middleware/authMiddleware.js");
 
 const projectRoutes = express.Router();
 
-router.route("/")
+// Use projectRoutes instead of router
+projectRoutes.route("/")
   .post(protect, createProject)
   .get(protect, getProjects);
 
-router.route("/:id")
+projectRoutes.route("/:id")
   .put(protect, updateProject)
   .delete(protect, deleteProject);
 
-export default projectRoutes;
+module.exports = projectRoutes;

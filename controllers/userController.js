@@ -1,4 +1,4 @@
-export const updateProfile = async (req, res) => {
+module.exports= updateProfile = async (req, res) => {
   const user = await User.findById(req.user.id);
   if (user) {
     user.name = req.body.name || user.name;

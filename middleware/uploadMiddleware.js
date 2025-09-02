@@ -1,5 +1,5 @@
-import multer from "multer";
-import path from "path";
+const multer = require("multer");
+const path = require("path");
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -15,9 +15,7 @@ const storage = multer.diskStorage({
 
 function checkFileType(file, cb) {
   const filetypes = /jpg|jpeg|png/;
-  const extname = filetypes.test(
-    path.extname(file.originalname).toLowerCase()
-  );
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   const mimetype = filetypes.test(file.mimetype);
 
   if (extname && mimetype) cb(null, true);
@@ -31,4 +29,4 @@ const upload = multer({
   },
 });
 
-export default upload;
+module.exports = upload;

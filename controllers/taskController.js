@@ -1,7 +1,7 @@
-import Task from "../models/Task.js";
+const Task = require("../models/Task.js");
 
 // @desc Create task
-export const createTask = async (req, res) => {
+const createTask = async (req, res) => {
   try {
     const task = await Task.create({
       title: req.body.title,
@@ -16,13 +16,13 @@ export const createTask = async (req, res) => {
 };
 
 // @desc Get all user tasks
-export const getTasks = async (req, res) => {
+const getTasks = async (req, res) => {
   const tasks = await Task.find({ user: req.user.id });
   res.json(tasks);
 };
 
 // @desc Update task
-export const updateTask = async (req, res) => {
+const updateTask = async (req, res) => {
   const task = await Task.findById(req.params.id);
 
   if (!task) return res.status(404).json({ message: "Task not found" });
@@ -36,7 +36,7 @@ export const updateTask = async (req, res) => {
 };
 
 // @desc Delete task
-export const deleteTask = async (req, res) => {
+const deleteTask = async (req, res) => {
   const task = await Task.findById(req.params.id);
 
   if (!task) return res.status(404).json({ message: "Task not found" });
@@ -45,4 +45,11 @@ export const deleteTask = async (req, res) => {
 
   await task.deleteOne();
   res.json({ message: "Task removed" });
+};
+
+module.exports = {
+  createTask,
+  getTasks,
+  updateTask,
+  deleteTask,
 };

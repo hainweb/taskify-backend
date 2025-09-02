@@ -7,7 +7,7 @@ const generateToken = (id) => {
 };
 
 // @desc Register User
-export const registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -29,7 +29,8 @@ export const registerUser = async (req, res) => {
   }
 };
 
-export const loginUser = async (req, res) => {
+// @desc Login User
+const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -51,8 +52,8 @@ export const loginUser = async (req, res) => {
   }
 };
 
-// @desc Update user profile
-export const updateProfile = async (req, res) => {
+// @desc Update Profile
+const updateProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
 
@@ -76,4 +77,11 @@ export const updateProfile = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+
+module.exports = {
+  registerUser,
+  loginUser,
+  updateProfile,
 };

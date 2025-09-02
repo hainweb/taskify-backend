@@ -1,8 +1,9 @@
-import express from "express";
-import { getTaskStats } from "../controllers/statsController.js";
-import protect from "../middleware/authMiddleware.js";
+const express = require("express");
+const { getTaskStats } = require("../controllers/statsController.js");
+const protect = require("../middleware/authMiddleware.js");
 
 const statsRoutes = express.Router();
-router.get("/", protect, getTaskStats);
 
-export default statsRoutes;
+statsRoutes.get("/", protect, getTaskStats);
+
+module.exports = statsRoutes;
